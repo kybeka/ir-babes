@@ -26,7 +26,6 @@
     "vue-cli-plugin-vuetify": "~2.5.8",
     "webpack-plugin-vuetify": "^2.0.0-alpha.0"
   },
-
   "browserslist": [
     "> 1%",
     "last 2 versions",

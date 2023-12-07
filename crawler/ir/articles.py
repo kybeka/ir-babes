@@ -1,8 +1,6 @@
 import datetime
 import re
 
-
-
 def strip_first_paragraph(first_paragraph):
     # Strip the first paragraph to only the first 250 characters
     stripped_paragraph = first_paragraph[:250].strip()

@@ -1,23 +1,29 @@
 import datetime
+import re
 
 
-def make(
-        site, #domain of scraped site
-        page_link, #page link
-        author_name, #name of author
-        article_image, #image of article
-        article_title, #title of the article
-        tags_list, #list of tags
 
-    ):
-    return {
-        'site': site,
-        'page_link': page_link,
-        'author_name': author_name,
-        'article_image': article_image,
-        'tags': tags_list or [],
-        'indexDate': datetime.now.isoformat()
-    }
+def strip_first_paragraph(first_paragraph):
+    # Strip the first paragraph to only the first 250 characters
+    stripped_paragraph = first_paragraph[:250].strip()
+    return stripped_paragraph
+
+    
+def extract_date_from_url(url):
+    # Define a regex pattern to extract year and month from the URL
+    pattern = r'/(\d{4})/(\d{2})/'
+
+    # Use regex to find the match in the URL
+    match = re.search(pattern, url)
+
+    # Check if a match is found
+    if match:
+        year, month = match.groups()
+        return { "year": int(year), "month": int(month) }
+    else:
+        return None
+
+
 
 
 

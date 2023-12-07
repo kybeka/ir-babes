@@ -1,5 +1,22 @@
 import datetime
 import re
+from datetime import datetime
+
+def convert_date(date_array):
+    # Convert month name to its numerical representation
+    months = {
+        'January': 1, 'February': 2, 'March': 3, 'April': 4,
+        'May': 5, 'June': 6, 'July': 7, 'August': 8,
+        'September': 9, 'October': 10, 'November': 11, 'December': 12
+    }
+
+    month_name, day, year = date_array
+    # Convert month name to numerical representation
+    month = months.get(month_name)
+
+    # Create a date object
+    return {"year": int(year), "month": int(month)}
+     
 
 def strip_first_paragraph(first_paragraph):
     # Strip the first paragraph to only the first 250 characters

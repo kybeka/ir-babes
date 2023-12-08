@@ -15,7 +15,7 @@ class LinksMITSpider(scrapy.Spider):
 
         # Loop through each article and extract the link
         for article in articles:
-            link = response.urljoin(article.xpath('.//div/a/@href').extract_first())
+            link = response.urljoin(article.xpath('.//a[@class="term-page--news-article--item--title--link"]/@href').extract_first())
 
             # Yield the link in a dictionary format
             yield {"link": link}
@@ -30,7 +30,7 @@ class LinksMITSpider(scrapy.Spider):
         else:
             # Print a message when there are no more pages
             print("NO MORE PAGES")
-            
+
 
 # To run this spider, use the following command in the terminal:
 # PYTHONDONTWRITEBYTECODE=1 scrapy crawl mit_links -o ../crawled/links/links_mit.jsonl

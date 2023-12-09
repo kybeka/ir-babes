@@ -1,23 +1,20 @@
 <template>
   <v-app>
     <v-main>
-      <!-- <HelloWorld/> -->
-      <SearchComponentVue/>
+      <RouterView />
     </v-main>
   </v-app>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-import SearchComponentVue from './components/SearchComponent.vue'
+import { RouterView } from 'vue-router'
 
 export default {
   name: 'App',
 
   components: {
-    // HelloWorld,
-    SearchComponentVue
-  },
+    RouterView
+},
 
   data: () => ({
     //

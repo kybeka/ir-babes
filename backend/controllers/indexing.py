@@ -86,10 +86,17 @@ def retrieve_info(cdf, db_objects):
     cdf["url"] = article_url
     # cdf["tags"] = article_tags
 
-    # print("HERE NOW",len(cdf[0]))
-    cdf_filterd = cdf[cdf["score"] >= threshold]
-    # print("WATCH ME BITCH, HERE NOW", len(cdf[0]))
-    return cdf_filterd.to_json(orient='records', lines=True)
+    cdf_filtered = cdf[cdf["score"] >= threshold]
+
+    if len(cdf_filtered) == 0:
+        return "[]"  # Return an empty array as a string
+    elif len(cdf_filtered) == 1:
+        # Return a single JSON object as a string
+        print("whateverrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+        js = cdf_filtered.to_json()
+        print(js)
+
+    return cdf_filtered.to_json(orient='records', lines=True)
 
 
 def getQueryResult(index, query, db_objs):

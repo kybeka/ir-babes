@@ -40,9 +40,7 @@ else:
     db_objs = list(cursor)
 
 
-
 index = indexing()
-
 
 # db_objs = []
 
@@ -58,38 +56,15 @@ app.config.from_object(__name__)
 
 CORS(app, resources={r'/*': {'origins': '*'}})
 
-# Routes
-# @app.route("/")
-# def hello():
-#     return "Hello, World!"
-
-# # sanity check route
-# @app.route('/ping', methods=['GET'])
-# def ping_pong():
-#     return jsonify('pong!')
-
-# @app.route('/getQuery', methods=['GET'])
-# def get_q():
-#     query = [["q1", "data analysis"], ["q2", "gemini"]]
-#     # getQueryResult(index, query, db_objs)
-#     return (getQueryResult(index, query, db_objs)).to_json(orient='records', lines=True)
-
-
-@app.route('/ping/<parameter>', methods=['GET'])
-def example_route(parameter):
-    return jsonify({'parameter': parameter}, {"just": "ok"})
+# @app.route('/ping/<parameter>', methods=['GET'])
+# def example_route(parameter):
+#     return jsonify({'parameter': parameter}, {"just": "ok"})
 
 
 @app.route('/search/<query>', methods=['GET'])
 def send_q(query):
     query = [["q1", query]]
     return getQueryResult(index, query, db_objs)
-
-
-    
-
-
-
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

@@ -46,10 +46,7 @@ def custom_tokenizer(text):
 
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["db_ai"]
-
 collection_name = "list_of_topics"
-
-
 
 def get_topic_names():
     # Open the text file in read mode
@@ -100,12 +97,13 @@ def get_topic_names():
     print("LIST OF NAMES", list_of_names)
 
     # Insert the list_of_names into the MongoDB collection
-    # if collection_name not in db.list_collection_names():
-    #     # If the collection doesn't exist, create it
-    #     collection = db.create_collection(collection_name)  # Set your preferred size
-    #     # Insert the list_of_names into the MongoDB collection
-    #     collection.insert_many(list_of_names)
+    if collection_name not in db.list_collection_names():
+        # If the collection doesn't exist, create it
+        collection = db.create_collection(collection_name)  # Set your preferred size
+        # Insert the list_of_names into the MongoDB collection
+        collection.insert_many(list_of_names)
 
+    # Call the clustering next
     clustering(doc_topic_matrix, topic_names, df_topics, text)
     return list_of_names
 
@@ -134,7 +132,6 @@ def clustering(doc_topic_matrix, topic_names, df_topics, text):
         # local_dict["topic_nr"] = row["Dominant_Topic"].idxmax()
 
         json_dict.append(local_dict)
-
 
     file_path = '../backend/db/output.json'
     # Dump the array of dictionaries into a JSON file

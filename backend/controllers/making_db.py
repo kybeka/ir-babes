@@ -1,5 +1,6 @@
 import json
 import os
+from pymongo import MongoClient
 
 # This file is responsible for creating a "jumbo" database of all our scraped files
 # The outputted file is not properly yet formatted for indexing however
@@ -37,4 +38,21 @@ def make_db():
         with open(output_file_path, 'w', encoding='utf-8') as output_file:
             json.dump(combined_data, output_file, indent=2)
 
-        # print(f'Combined data saved to {output_file_path}')
+    # Establish a connection to MongoDB
+    client = MongoClient('mongodb://localhost:27017/')  # Update with your MongoDB connection string
+    database = client['db_ai']  # Replace 'your_database_name' with the actual database name
+    collection_name = 'db'
+
+    # Check if the collection exists
+    if not collection_exists(database, collection_name):
+        # Create the collection if it doesn't exist
+        database.create_collection(collection_name)
+        collection = database[collection_name]
+        # Insert each document into the MongoDB collection
+        for json_data in combined_data:
+            collection.insert_one(json_data)
+
+    # print(f'Combined data saved to {output_file_path}')
+
+def collection_exists(db, collection_name):
+    return collection_name in db.list_collection_names()

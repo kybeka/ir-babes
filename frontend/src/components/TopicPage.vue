@@ -30,7 +30,9 @@
                             <v-card-title class="results-title">Loading...</v-card-title>
                         </v-card>
                         <v-card v-else-if="results" class="results-card" elevation="10">
-                            <v-img src="result.image" alt="Article Image" class="result-image" ></v-img>
+                            <div class="result-image-container">
+                                <v-img :src='result.img' alt="Article Image" class="result-image"></v-img>
+                            </div>
                             <v-card-title>{{ result.title }}</v-card-title>
                             <v-card-subtitle>{{ truncateText(result.text, 250) }}</v-card-subtitle>
                             <v-card-text class="result-info">
@@ -143,7 +145,24 @@
   </script>
   
   <style scoped>
-  /* Add your styles as needed */
+
+  .result-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid rgba(169, 169, 169, 0.5); /* 3px semi-opaque grey box */
+  border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+  overflow: hidden; /* Optional: Hide any overflowing content within the container */
+}
+
+.result-image {
+  padding-inline: 10px;
+  display: stretch;
+  max-width: 100%; /* Ensure the image doesn't exceed the container width */
+  max-height: 50%; /* Ensure the image doesn't exceed the container height */
+  object-fit: cover; /* Maintain aspect ratio while covering the container */
+}
+
   
   .go-back {
     align-self: baseline;
@@ -154,18 +173,11 @@
   }
   
   .main {
+    overflow-x: hidden;
     height: 100vh;
     background: radial-gradient(circle, #d5ced2, #d0bccd, #c5accd, #b29ecf, #9793d3, #8689d7, #7080dc, #5378e1, #566ae5, #605ae6, #6f45e4, #8125de);
   }
 
-  .title {
-  font-size: 2.5em;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #2196F3;
-  /* Vuetify primary color */
-}
-  
   .results-card {
     background-color: #FFFFFF;
     border-radius: 10px;

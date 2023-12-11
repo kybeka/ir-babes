@@ -60,6 +60,7 @@
                     <div v-if="result.img !== undefined" class="result-image-container">
                       <v-img :src='result.img' alt="Article Image" class="result-image"></v-img>
                     </div>
+                    
                     <v-card-title>{{ result.title }}</v-card-title>
                     <v-card-subtitle>{{ truncateText(result.text, 250) }}</v-card-subtitle>
                     <v-card-text class="result-info">
@@ -123,7 +124,6 @@ export default {
   },
   methods: {
     redirectToMenusPage() {
-        // You can replace '/menus' with the actual route/path to your menus page
         this.$router.push('/menus');
     },
     async search() {
@@ -133,7 +133,7 @@ export default {
         const response = await axios.get(`http://localhost:5000/search/${this.query}`);
         var jsonString = response.data;
         // console.log(jsonString)
-        console.log(jsonString.length)
+        // console.log(jsonString.length)
         var jsonStringArray = []
         
         if (jsonString.length !== undefined) {
@@ -209,7 +209,6 @@ export default {
   margin-bottom: 10px;
   text-align: center;
   background-color: #F0F0F0;
-  /* border-radius: 5px; */
   padding: -3px;
 
 }
@@ -223,17 +222,16 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 3px solid rgba(169, 169, 169, 0.5); /* 3px semi-opaque grey box */
-  border-radius: 5px; /* Optional: Add border-radius for rounded corners */
-  overflow: hidden; /* Optional: Hide any overflowing content within the container */
+  border: 3px solid rgba(169, 169, 169, 0.5); 
+  border-radius: 5px; 
+  overflow: hidden; 
 }
 
 .result-image {
   padding-inline: 10px;
-  display: stretch;
-  max-width: 25%; /* Ensure the image doesn't exceed the container width */
-  max-height: 50%; /* Ensure the image doesn't exceed the container height */
-  object-fit: cover; /* Maintain aspect ratio while covering the container */
+  max-width: 50%; 
+  max-height: 75%; 
+  object-fit: cover; 
 }
 
 .search-container {
@@ -248,14 +246,6 @@ export default {
   text-align: center;
 }
 
-.title {
-  font-size: 2.5em;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #2196F3;
-  /* Vuetify primary color */
-}
-
 .results-card {
   background-color: #FFFFFF;
   border-radius: 10px;
@@ -268,14 +258,13 @@ export default {
   font-size: 1.8em;
   font-weight: bold;
   color: #673AB7;
-  /* Vuetify primary color */
+ 
 }
 
 .result-link {
   object-fit: cover;
   text-decoration: none;
   color: #2196F3;
-  /* Vuetify primary color */
   font-size: 1.2em;
   font-weight: bold;
   cursor: pointer;

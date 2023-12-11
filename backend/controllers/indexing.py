@@ -4,7 +4,7 @@ import pandas as pd
 import pyterrier as pt
 import numpy as np
 
-
+from pymongo import MongoClient
 from controllers.db_clean import clean_json
 
 # This file is responsible for building the dataframe for PyTerrier
@@ -34,9 +34,18 @@ def indexing():
 
         with open(output_file_path, 'w') as json_file:
             json.dump(dict_array, json_file, indent=2)
+
+        database = 'db_ai'
+        collection_name = 'pre_indexed_table'
+        if not collection_exists(database, collection_name):
+            # Create the collection if it doesn't exist
+            database.create_collection(collection_name)
+            collection = database[collection_name]
+            # Insert each document into the MongoDB collection
+            for entry in dict_array:
+                collection.insert_one(entry)   
         
-        # print("Success")
-    
+    ## Indexing now
     if not pt.started():
         pt.init()
     
@@ -48,6 +57,9 @@ def indexing():
 
     return index
 
+
+def collection_exists(db, collection_name):
+    return collection_name in db.list_collection_names()
 
 # To collect statistics of the inverted index table
 # print(index.getCollectionStatistics().toString())

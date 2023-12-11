@@ -8,6 +8,7 @@ import pymongo
 import pandas as pd
 import json
 
+from controllers.making_db import make_db
 from controllers.indexing import indexing, getQueryResult
 from controllers.clustering import get_topic_names, document_by_topic
 
@@ -31,6 +32,7 @@ collection_name = "db"
 if collection_name not in db.list_collection_names():
     # Collection doesn't exist, create it
     db.create_collection(collection_name)
+    make_db()
     # Load the necessary files in...
 else:
     collection_name = db[collection_name]
@@ -40,15 +42,8 @@ else:
     # Convert the cursor to a list of dictionaries
     db_objs = list(cursor)
 
-
+#Called upom initial launch of program
 index = indexing()
-
-# db_objs = []
-
-# with open(DBPATH, "r") as f:
-#     objects = json.load(f)
-#     for obj in objects:
-#         db_objs.append(obj)
 
 # Flask --------------------------------------------------------------------------------
 
@@ -75,7 +70,6 @@ def get_topics():
 def get_articles(query):
     df = document_by_topic(str(query), '../backend/db/output.json')
     return df.to_json(orient='records', lines=True)
-
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

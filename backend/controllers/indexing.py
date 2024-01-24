@@ -120,6 +120,7 @@ def getQueryResult(index, query, db_objs):
     print(results)
 
     formattedResult = retrieve_info(results, db_objs)
+    print(formattedResult)
     return formattedResult
 
 

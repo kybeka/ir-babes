@@ -17,6 +17,7 @@
     "mongodb": "^6.3.0",
     "papaparse": "^5.4.1",
     "roboto-fontface": "*",
+    "vercel": "^33.2.0",
     "vue": "^3.2.13",
     "vue-router": "^4.2.5",
     "vuetify": "^3.0.0-beta.0",

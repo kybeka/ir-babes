@@ -30,6 +30,6 @@
         }
     ],
     "env": {
-        "MONGODB_URI": "@MONGODB_URI"
+        "MONGODB_URI": "mongodb+srv://kylabkaplan:g6ZKCEVBanX94w3S@cluster0.zyftcau.mongodb.net/"
     }
 }

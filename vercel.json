@@ -30,6 +30,6 @@
         }
     ],
     "env": {
-        "MONGODB_URI": "your_production_mongodb_uri"
+        "MONGODB_URI": "@MONGODB_URI"
     }
 }

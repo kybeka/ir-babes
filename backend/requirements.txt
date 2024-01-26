@@ -1,6 +1,6 @@
 annotated-types==0.5.0
 anyio==3.6.2
-apturl==0.5.2
+apturl==0.5.4
 argon2-cffi==21.3.0
 argon2-cffi-bindings==21.2.0
 asciinema==2.0.2

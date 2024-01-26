@@ -27,6 +27,8 @@ PREINDEXTABLE = '../indexing/db/output.json'
 # Retrieve MongoDB password from environment variable
 mongo_db_password = os.getenv('MONGO_DB_PASSWORD')
 
+
+
 # # Check if the environment variable is set
 # if not mongo_db_password:
 #     raise ValueError("MongoDB password is not set in the environment variables.")

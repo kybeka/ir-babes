@@ -2,15 +2,24 @@
     "version": 2,
     "builds": [
         {
-            "src": "backend",
-            "use": "@vercel/python"
+            "src": "backend/app.py",
+            "use": "@vercel/python",
+            "config": {
+                "maxLambdaSize": "2048mb"  
+            }
         },
         {
             "src": "frontend",
-            "use": "@vercel/static-build"
+            "use": "@vercel/static-build",
+            "config": {
+                "framework": "vue@2",  
+                "devCommand": "yarn serve",
+                "outputDirectory": "dist"  
+            }
         }
     ],
     "routes": [
+        { "handle": "filesystem" },
         {
             "src": "/api/(.*)",
             "dest": "backend/app.py"
@@ -19,5 +28,8 @@
             "src": "/(.*)",
             "dest": "frontend/index.html"
         }
-    ]
+    ],
+    "env": {
+        "MONGODB_URI": "your_production_mongodb_uri"
+    }
 }

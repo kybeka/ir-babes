@@ -26,7 +26,6 @@ chest==0.2.3
 click==8.1.7
 cmake==3.27.5
 colorama==0.4.6
-command-not-found==0.3
 confection==0.1.3
 constantly==15.1.0
 contourpy==1.1.1

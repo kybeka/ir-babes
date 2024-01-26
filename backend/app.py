@@ -4,9 +4,10 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 
 import pyterrier as pt
-import pymongo
+from pymongo import MongoClient
 import pandas as pd
 import json
+import os
 
 from controllers.making_db import make_db
 from controllers.indexing import indexing, getQueryResult
@@ -22,8 +23,24 @@ PREINDEXTABLE = '../indexing/db/output.json'
 # Mongo ---------------------------------------------------------------------------------
 
 # Connect to MongoDB
-client = pymongo.MongoClient("mongodb://localhost:27017/")
-database_name = "db_ai"
+# client = pymongo.MongoClient("mongodb://localhost:27017/")
+# Retrieve MongoDB password from environment variable
+mongo_db_password = os.getenv('MONGO_DB_PASSWORD')
+
+# # Check if the environment variable is set
+# if not mongo_db_password:
+#     raise ValueError("MongoDB password is not set in the environment variables.")
+
+# Construct the MongoDB connection string
+# client = f"mongodb+srv://kylabkaplan:{mongo_db_password}@cluster0.zyftcau.mongodb.net/"
+
+# Construct the MongoDB connection string
+mongo_uri = f'mongodb+srv://kylabkaplan:{mongo_db_password}@cluster0.zyftcau.mongodb.net/'
+
+# Create a MongoClient instance
+client = MongoClient(mongo_uri)
+
+database_name = 'db_ai'
 db = client[database_name]
 
 collection_name = "db"
@@ -65,6 +82,9 @@ def get_topics():
     tn = get_topic_names()
     return tn
 
+@app.route('/ping', methods=['GET'])
+def ping():
+    return 'Ping'
 
 @app.route('/topic/<query>', methods=["GET"])
 def get_articles(query):

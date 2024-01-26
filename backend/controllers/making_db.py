@@ -8,7 +8,9 @@ from pymongo import MongoClient
 
 def make_db():
     # The difference between `make_db` and `make_db2` is that `make_db2` has the JSON object of date pre-flattened
+    # output_file_path = '../../indexing/db/make_db2.json'
     output_file_path = '../../indexing/db/make_db2.json'
+
 
     # if it doesn't already exist it will make it, otherwise it won't, and skip it
     if not os.path.exists(output_file_path):
@@ -39,7 +41,14 @@ def make_db():
             json.dump(combined_data, output_file, indent=2)
 
     # Establish a connection to MongoDB
-    client = MongoClient('mongodb://localhost:27017/')  # Update with your MongoDB connection string
+    # client = MongoClient('mongodb://localhost:27017/')  # Update with your MongoDB connection string
+
+    mongo_db_password = os.getenv('MONGO_DB_PASSWORD')
+    # Construct the MongoDB connection string
+    mongo_uri = f'mongodb+srv://kylabkaplan:{mongo_db_password}@cluster0.zyftcau.mongodb.net/'
+    # Create a MongoClient instance
+    client = MongoClient(mongo_uri)
+
     database = client['db_ai']  # Replace 'your_database_name' with the actual database name
     collection_name = 'db'
 

@@ -76,7 +76,7 @@
         this.fetchStartTime = Date.now(); // Record start time before making the request
         try {
 
-          const response = await axios.get(`http://localhost:5000/menus`);
+          const response = await axios.get(`http://127.0.0.1:5000/menus`);
           this.responseData = response.data;
           this.topics = this.responseData;
           console.log('Response from backend:', this.responseData);

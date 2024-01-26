@@ -130,7 +130,7 @@ export default {
       try {
         const startTime = Date.now(); // Record start time before making the request
         this.loading = true;
-        const response = await axios.get(`http://localhost:5000/search/${this.query}`);
+        const response = await axios.get(`http://127.0.0.1:5000/search/${this.query}`);
         var jsonString = response.data;
         // console.log(jsonString)
         // console.log(jsonString.length)

@@ -2,11 +2,12 @@
 import nltk
 from nltk.corpus import stopwords
 import string
+import os
 import json
 import pandas as pd
 import pyterrier as pt
 import numpy as np
-import pymongo
+from pymongo import MongoClient
 
 # Downloading NLTK resources
 nltk.download('punkt')
@@ -43,8 +44,12 @@ def custom_tokenizer(text):
 # test = "I am myself we make ginger latte in Zimbabe !"
 # print("output", custom_tokenizer(test))
 
-
-client = pymongo.MongoClient("mongodb://localhost:27017/")
+mongo_db_password = os.getenv('MONGO_DB_PASSWORD')
+# Construct the MongoDB connection string
+mongo_uri = f'mongodb+srv://kylabkaplan:{mongo_db_password}@cluster0.zyftcau.mongodb.net/'
+# Create a MongoClient instance
+client = MongoClient(mongo_uri)
+# client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["db_ai"]
 collection_name = "list_of_topics"
 

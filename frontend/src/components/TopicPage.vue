@@ -72,7 +72,7 @@
         try {
           // Extract the topic parameter from the route
           this.topic = this.$route.params.topic;
-          const response = await axios.get(`http://localhost:5000/topic/${this.topic}`);
+          const response = await axios.get(`http://127.0.0.1:5000/topic/${this.topic}`);
             var jsonString = response.data;
             // console.log(jsonString)
             console.log(jsonString.length)

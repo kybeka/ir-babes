@@ -81,9 +81,9 @@ def get_topics():
     tn = get_topic_names()
     return tn
 
-@app.route('/ping', methods=['GET'])
-def ping():
-    return 'Ping'
+# @app.route('/ping', methods=['GET'])
+# def ping():
+#     return 'Ping'
 
 @app.route('/topic/<query>', methods=["GET"])
 def get_articles(query):

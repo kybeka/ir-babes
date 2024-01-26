@@ -4,7 +4,6 @@ import pandas as pd
 import pyterrier as pt
 import numpy as np
 
-from pymongo import MongoClient
 from controllers.db_clean import clean_json
 
 # This file is responsible for building the dataframe for PyTerrier

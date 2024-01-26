@@ -1,12 +1,9 @@
 # save this as app.py
 #Flask
-from flask import Flask, jsonify
+from flask import Flask
 from flask_cors import CORS
 
-import pyterrier as pt
 from pymongo import MongoClient
-import pandas as pd
-import json
 import os
 
 from controllers.making_db import make_db

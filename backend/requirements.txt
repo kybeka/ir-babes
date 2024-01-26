@@ -23,7 +23,6 @@ cffi==1.15.1
 chardet==5.2.0
 charset-normalizer==3.1.0
 chest==0.2.3
-chrome-gnome-shell==0.0.0
 click==8.1.7
 cmake==3.27.5
 colorama==0.4.6

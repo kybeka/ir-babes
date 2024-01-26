@@ -3,7 +3,7 @@ import json
 import re
 import calendar
 import locale
-
+ 
 # This file is responsible for "cleansing" our mini-jumbo-database in order to prepare it for indexing
 
 def clean_json():

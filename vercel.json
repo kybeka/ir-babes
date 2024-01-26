@@ -28,8 +28,5 @@
             "src": "/(.*)",
             "dest": "frontend/index.html"
         }
-    ],
-    "env": {
-        "MONGODB_URI": "@MONGODB_URI"
-    }
+    ]
 }
